@@ -23,11 +23,18 @@ jobs:
         sudo apt install -y build-essential ccache git zip unzip openjdk-17-jdk python3-pip \
                             libffi-dev libssl-dev libncurses5 libncurses5-dev libncursesw5 \
                             autoconf libtool pkg-config
-                            
+
     - name: Set Java 17 as default
       run: |
         sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+        echo "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> $GITHUB_ENV
         java -version
+
+    - name: Check Java version and JAVA_HOME
+      run: |
+        echo "Java version:"
+        java -version
+        echo "JAVA_HOME: $JAVA_HOME"
 
     - name: Install Buildozer
       run: |
@@ -35,7 +42,10 @@ jobs:
         pip install buildozer cython
 
     - name: Install Android SDK Build Tools and Accept Licenses
+      env:
+        JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
       run: |
+        export PATH=$JAVA_HOME/bin:$PATH
         wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmdline-tools.zip
         mkdir -p $HOME/android-sdk/cmdline-tools
         unzip -q cmdline-tools.zip -d $HOME/android-sdk/cmdline-tools
@@ -49,7 +59,8 @@ jobs:
       env:
         ANDROIDSDK: $HOME/android-sdk
         ANDROID_SDK_ROOT: $HOME/android-sdk
-        PATH: $HOME/android-sdk/platform-tools:$HOME/android-sdk/cmdline-tools/latest/bin:$PATH
+        JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+        PATH: $HOME/android-sdk/platform-tools:$HOME/android-sdk/cmdline-tools/latest/bin:/usr/lib/jvm/java-17-openjdk-amd64/bin:$PATH
       run: |
         buildozer android debug
 
