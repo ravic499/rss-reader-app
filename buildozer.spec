@@ -29,7 +29,5 @@ android.api = 33
 android.ndk = 25b
 android.arch = armeabi-v7a
 android.minapi = 21
-
-# Use the pre-installed Android SDK from the GitHub Actions workflow
-sdk_path = /home/runner/android-sdk
+sdk_path = /home/runner/.buildozer/android/platform/android-sdk
 build_tools_version = 34.0.0
