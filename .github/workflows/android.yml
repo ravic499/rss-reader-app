@@ -23,6 +23,11 @@ jobs:
         sudo apt install -y build-essential ccache git zip unzip openjdk-17-jdk python3-pip \
                             libffi-dev libssl-dev libncurses5 libncurses5-dev libncursesw5 \
                             autoconf libtool pkg-config
+                            
+    - name: Set Java 17 as default
+      run: |
+        sudo update-alternatives --set java /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+        java -version
 
     - name: Install Buildozer
       run: |
