@@ -41,7 +41,6 @@ jobs:
         pip install --upgrade pip
         pip install buildozer cython
 
-    # Clean any previously downloaded SDKs by Buildozer that could interfere
     - name: Clean old Buildozer Android SDK
       run: rm -rf /home/runner/.buildozer/android/platform/android-sdk
 
@@ -57,7 +56,10 @@ jobs:
         export ANDROID_SDK_ROOT=$HOME/android-sdk
         export PATH=$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$PATH
         yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
-        $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+        $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-33" "build-tools;34.0.0"
+
+    - name: List build-tools directory for debugging
+      run: ls -lR $HOME/android-sdk/build-tools
 
     - name: Show buildozer.spec
       run: cat buildozer.spec
