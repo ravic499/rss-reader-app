@@ -69,11 +69,11 @@ jobs:
 
     - name: Build APK
       env:
-        ANDROIDSDK: $HOME/android-sdk
-        ANDROID_SDK_ROOT: $HOME/android-sdk
-        ANDROID_HOME: $HOME/android-sdk
+        ANDROIDSDK: /home/runner/.buildozer/android/platform/android-sdk
+        ANDROID_SDK_ROOT: /home/runner/.buildozer/android/platform/android-sdk
+        ANDROID_HOME: /home/runner/.buildozer/android/platform/android-sdk
         JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
-        PATH: /usr/bin:$HOME/android-sdk/platform-tools:$HOME/android-sdk/cmdline-tools/latest/bin:/usr/lib/jvm/java-17-openjdk-amd64/bin:$PATH
+        PATH: /usr/bin:/home/runner/.buildozer/android/platform/android-sdk/platform-tools:/home/runner/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin:/usr/lib/jvm/java-17-openjdk-amd64/bin:$PATH
       run: |
         buildozer android debug
 
