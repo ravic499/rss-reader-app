@@ -41,9 +41,6 @@ jobs:
         pip install --upgrade pip
         pip install buildozer cython
 
-    - name: Clean old Buildozer Android SDK
-      run: rm -rf /home/runner/.buildozer/android/platform/android-sdk
-
     - name: Install Android SDK Build Tools and Accept Licenses
       env:
         JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
@@ -63,6 +60,12 @@ jobs:
 
     - name: Show buildozer.spec
       run: cat buildozer.spec
+
+    - name: Copy Android SDK to Buildozer's expected location
+      run: |
+        mkdir -p /home/runner/.buildozer/android/platform/
+        rm -rf /home/runner/.buildozer/android/platform/android-sdk
+        cp -r $HOME/android-sdk /home/runner/.buildozer/android/platform/android-sdk
 
     - name: Build APK
       env:
