@@ -42,7 +42,7 @@ jobs:
 
     - name: Install Buildozer and dependencies
       run: |
-        pip install --upgrade --no-cache-dir buildozer cython pyjnius==2.1.0
+        pip install --upgrade --no-cache-dir buildozer cython pyjnius==1.6.1
 
     - name: Install Android SDK Build Tools and Accept Licenses
       env:
