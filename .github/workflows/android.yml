@@ -38,7 +38,7 @@ jobs:
 
     - name: Clean buildozer and build directories
       run: |
-        rm -rf .buildozer build
+        rm -rf .buildozer build dist
 
     - name: Install Buildozer and dependencies
       run: |
@@ -81,7 +81,7 @@ jobs:
         ANDROID_SDK_ROOT: /home/runner/.buildozer/android/platform/android-sdk
         ANDROID_HOME: /home/runner/.buildozer/android/platform/android-sdk
         JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
-        PATH: /usr/bin:/home/runner/.buildozer/android/platform/android-sdk/platform-tools:/home/runner/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin:/usr/lib/jvm/java-17-openjdk-amd64/bin:$PATH
+        PATH: /usr/bin:/home/runner/.buildozer/android/platform/android-sdk/platform-tools:/home/runner/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin:/usr/lib/jvm/java-17-openjdk-amd64/bin:/home/runner/.buildozer/android/platform/android-sdk/build-tools/34.0.0:$PATH
       run: |
         buildozer android debug
 
